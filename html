@@ -4,214 +4,262 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ميسان المتحدة | Maysan United</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@300;400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #B8860B; /* الذهبي */
-            --secondary-color: #001F3F; /* الكحلي */
-            --whatsapp-color: #25D366; /* لون الواتساب */
-            --bg-light: #ffffff;
-            --bg-dark: #f8f9fa;
-            --transition: all 0.3s ease-in-out;
+            --gold: #C5A059;
+            --dark-gold: #997A3D;
+            --navy: #0A192F;
+            --light-navy: #172A45;
+            --white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Cairo', sans-serif;
-            direction: rtl;
-            color: #333;
-            line-height: 1.6;
+            background-color: #fcfcfc;
+            color: var(--navy);
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
         body.en { font-family: 'Montserrat', sans-serif; direction: ltr; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* --- Header --- */
+        /* --- Header & Nav --- */
         header {
-            background-color: var(--secondary-color);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
+            position: fixed;
+            width: 100%;
+            padding: 20px 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            background: linear-gradient(to bottom, rgba(10, 25, 47, 0.8), transparent);
         }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        header.scrolled {
+            background: var(--navy);
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-family: 'Amiri', serif;
+            color: var(--gold);
+            font-size: 24px;
             text-decoration: none;
+            letter-spacing: 1px;
         }
 
-        nav ul { display: flex; list-style: none; gap: 20px; }
-        nav ul li a { color: #fff; text-decoration: none; font-weight: 500; transition: var(--transition); }
-        nav ul li a:hover { color: var(--primary-color); }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500; transition: var(--transition); opacity: 0.9; }
+        .nav-links a:hover { color: var(--gold); opacity: 1; }
 
-        .lang-switch {
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
+        .btn-lang {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            background: transparent;
             padding: 5px 15px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 4px;
             font-weight: bold;
+            transition: var(--transition);
         }
+
+        .btn-lang:hover { background: var(--gold); color: var(--navy); }
 
         /* --- Hero Section --- */
         .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0,31,63,0.7), rgba(0,31,63,0.7)), 
-                        url('https://images.unsplash.com/photo-1563910621473-774435914a16?auto=format&fit=crop&q=80&w=1200') center/cover;
+            height: 100vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.6)), 
+                        url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop'); /* صورة فندقية فاخرة */
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
+            color: var(--white);
+            position: relative;
         }
 
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; color: var(--primary-color); }
+        .hero-content { animation: fadeInUp 1.2s ease; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 { font-size: clamp(2rem, 5vw, 4rem); font-family: 'Amiri', serif; margin-bottom: 20px; color: var(--gold); }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; }
+
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--gold);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-main:hover { background: var(--dark-gold); transform: translateY(-3px); }
 
         /* --- Services --- */
-        .section { padding: 80px 0; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .services { padding: 100px 0; background: var(--white); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--navy); position: relative; display: inline-block; padding-bottom: 10px; }
+        .section-title h2::after { content: ""; position: absolute; bottom: 0; left: 25%; width: 50%; height: 2px; background: var(--gold); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { 
-            background: #fff; padding: 30px; border-radius: 12px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition);
+            background: var(--white); padding: 40px; border-radius: 15px; border: 1px solid #eee;
+            transition: var(--transition); position: relative; overflow: hidden;
         }
-        .card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--primary-color); }
-        .card i { font-size: 40px; color: var(--primary-color); margin-bottom: 15px; }
+        .card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.05); transform: translateY(-10px); }
+        .card i { font-size: 45px; color: var(--gold); margin-bottom: 20px; }
+        .card h3 { margin-bottom: 15px; color: var(--navy); }
 
-        /* --- Contact Section --- */
-        .contact-info { background: var(--bg-dark); padding: 50px 0; text-align: center; }
-        .phone-link { 
-            font-size: 1.8rem; color: var(--secondary-color); 
-            text-decoration: none; font-weight: bold; display: block; margin: 20px 0;
-        }
+        /* --- Contact --- */
+        .contact { background: var(--navy); color: var(--white); padding: 80px 0; text-align: center; }
+        .phone-number { font-size: 2.5rem; color: var(--gold); text-decoration: none; display: block; margin: 25px 0; font-family: 'Montserrat', sans-serif; }
 
-        /* --- Floating WhatsApp Button --- */
+        /* --- WhatsApp --- */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px; /* سيتغير برمجياً عند تغيير اللغة */
-            background-color: var(--whatsapp-color);
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            z-index: 1001;
-            width: 60px;
-            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background: #25D366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 9999;
             transition: var(--transition);
         }
-        .whatsapp-float:hover { transform: scale(1.1); background-color: #128C7E; }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(15deg); }
 
-        /* Mobile Menu */
-        @media (max-width: 768px) {
-            nav { display: none; }
-            .hero h1 { font-size: 2rem; }
-        }
+        /* RTL/LTR Logic */
+        [dir="rtl"] .whatsapp-float { right: 40px; left: auto; }
+        [dir="ltr"] .whatsapp-float { left: 40px; right: auto; }
+        [dir="ltr"] body { direction: ltr; }
     </style>
 </head>
-<body>
+<body dir="rtl">
 
-    <header>
+    <header id="navbar">
         <div class="container">
-            <a href="#" class="logo">ميسان المتحدة</a>
             <nav>
-                <ul>
+                <a href="#" class="logo">ميسان المتحدة <span style="font-size: 12px; display: block; text-align: center;">MAYSAN UNITED</span></a>
+                <ul class="nav-links">
                     <li><a href="#home" data-en="Home">الرئيسية</a></li>
                     <li><a href="#services" data-en="Services">خدماتنا</a></li>
-                    <li><a href="#contact" data-en="Contact">اتصل بنا</a></li>
+                    <li><a href="#contact" data-en="Contact">تواصل معنا</a></li>
+                    <li><button class="btn-lang" onclick="toggleLanguage()">EN</button></li>
                 </ul>
             </nav>
-            <button class="lang-switch" onclick="toggleLanguage()">EN</button>
         </div>
     </header>
 
     <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 id="hero-title">فخامة الضيافة في قلب مكة</h1>
+            <p id="hero-desc">استثمار وإدارة وتشغيل الفنادق بمعايير عالمية تليق بقدسية المكان.</p>
+            <a href="#services" class="btn-main" data-en="Discover More">اكتشف المزيد</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
         <div class="container">
-            <h1 id="hero-title">إدارة واستثمار الفنادق في مكة المكرمة</h1>
-            <p id="hero-desc">خبرة عريقة في تشغيل الفنادق بجوار بيت الله الحرام</p>
-        </div>
-    </section>
-
-    <section id="services" class="section container">
-        <h2 data-en="Our Services">خدماتنا</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-hotel"></i>
-                <h3 data-en="Hotel Management">إدارة الفنادق</h3>
-                <p data-en="Professional management for high returns.">إدارة احترافية تضمن أعلى العوائد.</p>
+            <div class="section-title">
+                <h2 data-en="Our Expertise">خبراتنا</h2>
             </div>
-            <div class="card">
-                <i class="fas fa-chart-line"></i>
-                <h3 data-en="Investment">استثمار فندقي</h3>
-                <p data-en="Strategic investments in holy sites.">فرص استثمارية في المنطقة المركزية.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-concierge-bell"></i>
-                <h3 data-en="Operations">التشغيل</h3>
-                <p data-en="Full operational support 24/7.">تشغيل كامل بمعايير جودة عالمية.</p>
+            <div class="grid">
+                <div class="card">
+                    <i class="fas fa-city"></i>
+                    <h3 data-en="Asset Management">إدارة الأصول</h3>
+                    <p data-en="Strategic management to maximize hotel property value and returns.">إدارة استراتيجية تهدف لرفع قيمة الأصول الفندقية وتحقيق أفضل العوائد.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h3 data-en="Hotel Operations">تشغيل الفنادق</h3>
+                    <p data-en="Exceptional service standards for pilgrims and visitors.">تشغيل فندقي متكامل يركز على جودة الخدمة لضيوف الرحمن.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-hand-holding-dollar"></i>
+                    <h3 data-en="Investment">الاستثمار</h3>
+                    <p data-en="Unique investment opportunities in Makkah's prime locations.">فرص استثمارية مدروسة في أكثر المناطق حيوية بمكة المكرمة.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact-info">
+    <section id="contact" class="contact">
         <div class="container">
-            <h2 data-en="Contact Us">تواصل معنا</h2>
-            <p data-en="We are happy to serve you at any time">نسعد بخدمتكم في أي وقت</p>
-            <a href="tel:00966545963022" class="phone-link">
-                <i class="fas fa-phone-alt"></i> 00966545963022
-            </a>
-            <p>مكة المكرمة - المملكة العربية السعودية</p>
+            <h2 data-en="Contact Direct">اتصال مباشر</h2>
+            <a href="tel:00966545963022" class="phone-number">00966545963022</a>
+            <p data-en="Makkah Al Mukarramah, Kingdom of Saudi Arabia">مكة المكرمة، المملكة العربية السعودية</p>
         </div>
     </section>
 
-    <a href="https://wa.me/966545963022" class="whatsapp-float" target="_blank" id="whatsapp-btn">
+    <a href="https://wa.me/966545963022" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
+        // Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Language Toggle
         function toggleLanguage() {
             const body = document.body;
-            const btn = document.querySelector('.lang-switch');
-            const waBtn = document.getElementById('whatsapp-btn');
-            
-            if (body.classList.contains('en')) {
-                body.classList.remove('en');
-                body.dir = "rtl";
-                btn.textContent = "EN";
-                waBtn.style.right = "30px";
-                waBtn.style.left = "auto";
-                updateContent('ar');
-            } else {
+            const btn = document.querySelector('.btn-lang');
+            const isAr = body.getAttribute('dir') === 'rtl';
+
+            if (isAr) {
+                body.setAttribute('dir', 'ltr');
                 body.classList.add('en');
-                body.dir = "ltr";
-                btn.textContent = "AR";
-                waBtn.style.left = "30px";
-                waBtn.style.right = "auto";
-                updateContent('en');
+                btn.textContent = 'AR';
+                updateTexts('en');
+            } else {
+                body.setAttribute('dir', 'rtl');
+                body.classList.remove('en');
+                btn.textContent = 'EN';
+                updateTexts('ar');
             }
         }
 
-        function updateContent(lang) {
-            const elements = document.querySelectorAll('[data-en]');
-            elements.forEach(el => {
+        function updateTexts(lang) {
+            const translations = {
+                en: {
+                    title: "Luxury Hospitality in Makkah",
+                    desc: "Hotel investment, management, and operation with global standards."
+                },
+                ar: {
+                    title: "فخامة الضيافة في قلب مكة",
+                    desc: "استثمار وإدارة وتشغيل الفنادق بمعايير عالمية تليق بقدسية المكان."
+                }
+            };
+
+            document.getElementById('hero-title').textContent = translations[lang].title;
+            document.getElementById('hero-desc').textContent = translations[lang].desc;
+
+            document.querySelectorAll('[data-en]').forEach(el => {
                 if (lang === 'en') {
                     if (!el.dataset.ar) el.dataset.ar = el.textContent;
                     el.textContent = el.dataset.en;
@@ -219,18 +267,28 @@
                     el.textContent = el.dataset.ar;
                 }
             });
-
-            // Update Hero specifically
-            const title = document.getElementById('hero-title');
-            const desc = document.getElementById('hero-desc');
-            if (lang === 'en') {
-                title.textContent = "Hotel Management & Investment in Makkah";
-                desc.textContent = "Excellence in hotel operations near the Holy Mosque";
-            } else {
-                title.textContent = "إدارة واستثمار الفنادق في مكة المكرمة";
-                desc.textContent = "خبرة عريقة في تشغيل الفنادق بجوار بيت الله الحرام";
-            }
         }
     </script>
 </body>
 </html>
+<header id="navbar">
+    <div class="container">
+        <nav>
+            <a href="#" class="logo-container" style="display: flex; align-items: center; text-decoration: none; gap: 15px;">
+                <img src="https://via.placeholder.com/150x50/0A192F/C5A059?text=MAYSAN+LOGO" alt="شعار ميسان المتحدة" id="main-logo" style="height: 50px; width: auto; transition: var(--transition);">
+                
+                <div class="logo-text" style="display: flex; flex-direction: column; justify-content: center;">
+                    <span style="font-family: 'Amiri', serif; color: var(--gold); font-size: 20px; font-weight: bold; line-height: 1;">ميسان المتحدة</span>
+                    <span style="font-family: 'Montserrat', sans-serif; color: var(--white); font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Maysan United</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home" data-en="Home">الرئيسية</a></li>
+                <li><a href="#services" data-en="Services">خدماتنا</a></li>
+                <li><a href="#contact" data-en="Contact">تواصل معنا</a></li>
+                <li><button class="btn-lang" onclick="toggleLanguage()">EN</button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
